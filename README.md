@@ -8,8 +8,15 @@ Welcome to NeoHacker, a cyberpunk-themed Capture The Flag platform for learning 
 # Install dependencies
 npm install
 
-# Start the development server
-npm run dev
+# Start the game server
+npm run game
+
+# Open the game in browser
+o
+
+# Ask for help if you need 
+h
+
 ```
 
 ## 🎮 Game Mechanics
