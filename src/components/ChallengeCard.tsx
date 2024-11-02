@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Code2, Trophy, AlertCircle, CheckCircle2, XCircle, Clock } from 'lucide-react';
 import { Challenge } from '../types';
 import Editor from "@monaco-editor/react";
@@ -10,21 +10,21 @@ interface Props {
 }
 
 export const ChallengeCard: React.FC<Props> = ({ challenge, onSolve }) => {
-  const [showEditor, setShowEditor] = useState(false);
   const [code, setCode] = useState(challenge.template || '');
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [startTime, setStartTime] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (challenge.template) {
+      setStartTime(Date.now());
+    }
+  }, [challenge.template]);
 
   const difficultyColor = {
     easy: 'text-green-500',
     medium: 'text-yellow-500',
     hard: 'text-red-500'
   }[challenge.difficulty];
-
-  const handleStart = () => {
-    setShowEditor(true);
-    setStartTime(Date.now());
-  };
 
   const handleSubmit = () => {
     const isCorrect = code.includes(challenge.solution);
@@ -61,17 +61,8 @@ export const ChallengeCard: React.FC<Props> = ({ challenge, onSolve }) => {
       </div>
       
       <p className="text-gray-300 mb-4">{challenge.description}</p>
-
-      {!showEditor && challenge.template && (
-        <button
-          onClick={handleStart}
-          className="mb-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200"
-        >
-          Start Challenge
-        </button>
-      )}
       
-      {showEditor && (
+      {challenge.template && (
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
             {challenge.timeLimit && (
