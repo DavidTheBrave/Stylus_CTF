@@ -27,13 +27,25 @@ export const ChallengeCard: React.FC<Props> = ({ challenge, onSolve }) => {
   }[challenge.difficulty];
   
   const handleSubmit = () => {
-    // Split solution into required parts
-    const requiredParts = challenge.solution.split(';');
+      // Remove all whitespace (including tabs) from the code
+      const cleanCodeString = (str) => {
+        return str
+          .replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '') // Remove comments
+          .replace(/\s+/g, '') // Remove all whitespace
+          .replace(/;/g, ''); // Remove semicolons
+      };
     
-    // Check if all required parts are present in the code
-    const isCorrect = requiredParts.every(part => 
-      code.includes(part.trim())
-    );
+      // Clean the solution and split into parts
+      const cleanSolution = cleanCodeString(challenge.solution);
+      const requiredParts = cleanSolution.split(/(?=[a-zA-Z])/);
+    
+      // Clean the submitted code
+      const cleanCode = cleanCodeString(code);
+    
+      // Check if all required parts are present in the code
+      const isCorrect = requiredParts.every(part => 
+        cleanCode.includes(part)
+      );
 
     if (isCorrect) {
       const timeSpent = startTime ? (Date.now() - startTime) / 1000 : 0;
