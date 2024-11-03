@@ -3,6 +3,7 @@ import { ChallengeCard } from './components/ChallengeCard';
 import { Leaderboard } from './components/Leaderboard';
 import { challenges } from './data/challenges';
 import { Challenge, User } from './types';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Code2, Trophy, Users, Terminal } from 'lucide-react';
 
 function App() {
@@ -46,10 +47,7 @@ function App() {
             </div>
             <div className="flex items-center space-x-4">
               <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                <Users className="w-5 h-5" />
-              </button>
-              <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                <Trophy className="w-5 h-5" />
+                <ConnectButton />
               </button>
             </div>
           </div>
