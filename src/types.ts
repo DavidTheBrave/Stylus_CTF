@@ -25,6 +25,7 @@ export interface User {
   id: string;
   username: string;
   points: number;
+  address: string;
   solvedChallenges: string[];
   achievements: string[];
   rank: number;

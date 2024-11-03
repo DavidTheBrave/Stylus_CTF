@@ -10,19 +10,20 @@ function App() {
   const [currentChallenges, setCurrentChallenges] = useState<Challenge[]>(
     challenges.map(c => ({ ...c, solved: false }))
   );
-
   const [users] = useState<User[]>([
     {
       id: '1',
-      username: 'StylusHacker',
+      username: 'StylusHacker.eth',
       points: 420,
-      solvedChallenges: ['1'],
+      address: 0x1642E89656E65e8Af7e5ae0623Dc8e59815f8fB3,
+      solvedChallenges: ['1', '2'],
       rank: 1
     },
     {
       id: '2',
-      username: 'BlockchainNinja',
+      username: 'BlockchainNinja.eth',
       points: 362,
+      address: 0xc4f6d861947b55bab34bd197616527c85C43aBEf,
       solvedChallenges: ['1'],
       rank: 2
     }
@@ -46,6 +47,18 @@ function App() {
               <span className="ml-2 text-xl font-bold text-white">Stylus CTF</span>
             </div>
             <div className="flex items-center space-x-4">
+            <a href="https://practice.example.com" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Practice
+              </a>
+              <a href="https://challenge.example.com" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Challenge
+              </a>
+              <a href="https://scoreboard.example.com" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Scoreboard
+              </a>
+              <a href="https://classroom.example.com" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Classroom
+              </a>
               <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 <ConnectButton />
               </button>
