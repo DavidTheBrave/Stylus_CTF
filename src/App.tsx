@@ -14,7 +14,7 @@ function App() {
     {
       id: '1',
       username: 'StylusHacker.eth',
-      points: 420,
+      points: 750,
       address: 0x1642E89656E65e8Af7e5ae0623Dc8e59815f8fB3,
       solvedChallenges: ['1', '2'],
       rank: 1
