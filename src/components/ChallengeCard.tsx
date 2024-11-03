@@ -25,13 +25,20 @@ export const ChallengeCard: React.FC<Props> = ({ challenge, onSolve }) => {
     medium: 'text-yellow-500',
     hard: 'text-red-500'
   }[challenge.difficulty];
-
+  
   const handleSubmit = () => {
-    const isCorrect = code.includes(challenge.solution);
+    // Split solution into required parts
+    const requiredParts = challenge.solution.split(';');
+    
+    // Check if all required parts are present in the code
+    const isCorrect = requiredParts.every(part => 
+      code.includes(part.trim())
+    );
+
     if (isCorrect) {
       const timeSpent = startTime ? (Date.now() - startTime) / 1000 : 0;
       const timeBonus = challenge.timeLimit && timeSpent < challenge.timeLimit 
-        ? Math.floor(challenge.bonusPoints || 0 * (1 - timeSpent / challenge.timeLimit))
+        ? Math.floor((challenge.bonusPoints || 0) * (1 - timeSpent / challenge.timeLimit))
         : 0;
       
       setFeedback({ 
@@ -42,7 +49,7 @@ export const ChallengeCard: React.FC<Props> = ({ challenge, onSolve }) => {
     } else {
       setFeedback({ type: 'error', message: 'Not quite right. Try again!' });
     }
-  };
+};
 
   return (
     <div className="bg-gray-800 rounded-lg p-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-700">

@@ -19,7 +19,6 @@ export interface Achievement {
   name: string;
   description: string;
   icon: string;
-  unlocked?: boolean;
 }
 
 export interface User {

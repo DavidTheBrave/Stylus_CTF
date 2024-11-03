@@ -14,14 +14,14 @@ function App() {
     {
       id: '1',
       username: 'StylusHacker',
-      points: 450,
-      solvedChallenges: ['1', '2'],
+      points: 420,
+      solvedChallenges: ['1'],
       rank: 1
     },
     {
       id: '2',
       username: 'BlockchainNinja',
-      points: 300,
+      points: 250,
       solvedChallenges: ['1'],
       rank: 2
     }
