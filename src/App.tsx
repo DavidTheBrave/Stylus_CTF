@@ -21,7 +21,7 @@ function App() {
     {
       id: '2',
       username: 'BlockchainNinja',
-      points: 250,
+      points: 362,
       solvedChallenges: ['1'],
       rank: 2
     }
